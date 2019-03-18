@@ -15,7 +15,10 @@ spec:
   serviceName: "{{ template "consul.fullname" . }}"
   replicas: {{ default 3 .Values.replicas }}
   updateStrategy:
-    type: RollingUpdate
+    type: {{ .Values.updateStrategy.type }}
+    {{- if (eq "Recreate" .Values.updateStrategy.type) }}
+    rollingUpdate: null
+    {{- else }}
   template:
     metadata:
       name: "{{ template "consul.fullname" . }}"
@@ -186,7 +189,7 @@ spec:
         {{ end }}
       {{- if .Values.metrics.enabled }}
       - name: metrics
-        image: "{{ template "metrics.image" . }}"
+        image: "{{ template "consul.metrics.image" . }}"
         imagePullPolicy: {{ .Values.metrics.image.pullPolicy | quote }}
         env:
         command: [ '/bin/consul_exporter' , '--consul.server={{ template "consul.fullname" . }}:{{ .Values.port }}']
