@@ -26,6 +26,14 @@ image:
   # pullSecrets:
   #   - myRegistryKeySecretName
 
+## String to partially override consul.fullname template (will maintain the release name)
+##
+# nameOverride:
+
+## String to fully override consul.fullname template
+##
+# fullnameOverride:
+
 ## Consul replicas
 replicas: 3
 
@@ -45,6 +53,9 @@ securityContext:
   enabled: true
   fsGroup: 1001
   runAsUser: 1001
+
+# Cluster domain
+clusterDomain: cluster.local
 
 ## Datacenter name for consul. If not supplied, will use the consul
 ## default 'dc1'
