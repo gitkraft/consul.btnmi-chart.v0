@@ -14,7 +14,7 @@
 image:
   registry: docker.io
   repository: bitnami/consul
-  tag: 1.6.1-debian-9-r35
+  tag: 1.6.2-debian-9-r0
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -150,9 +150,6 @@ securityContext:
 
 ## HashiCorp Consul container's resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
-## Minimum memory for development is 4GB and 2 CPU cores
-## Minimum memory for production is 8GB and 4 CPU cores
-## ref: http://docs.datastax.com/en/archived/cassandra/2.0/cassandra/architecture/architecturePlanningHardware_c.html
 ##
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -333,7 +330,7 @@ metrics:
   image:
     registry: docker.io
     repository: bitnami/consul-exporter
-    tag: 0.5.0-debian-9-r69
+    tag: 0.5.0-debian-9-r93
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
     ## Secrets must be manually created in the namespace.
